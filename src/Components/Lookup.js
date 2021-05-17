@@ -4,7 +4,7 @@ import '../css/lookup.css'
 
 function Lookup() {
 
-    const [userInput, setuserInput] = useState([]); // User input stored here
+    const [userInput, setuserInput] = useState(""); // User input stored here
 
     // Capture user input
   function handleChange(event) {
@@ -17,7 +17,10 @@ function Lookup() {
           <i className="fas fa-print"></i>
           Print
           </button>
-          <button onClick = {handleChange} value="1">1</button>
+          <button onClick = {() => {
+              setuserInput(current => current + userInput)
+          }
+          } value="1">1</button>
           <button onClick = {handleChange} value="2">2</button>
           <button onClick = {handleChange} value="3">3</button>
           <button>
