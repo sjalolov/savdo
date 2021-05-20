@@ -3,8 +3,6 @@ import '../css/orderlist.css'
 
 function OderList(){
   return(
-<div className="register">
-  <div className="left-side">
     <div className="order-window">
       <table>
         <tbody>
@@ -18,9 +16,7 @@ function OderList(){
           </tr>
         </tbody>
       </table>
-    </div>
-   </div>
-</div>);
+    </div>);
 }
 
 export default OderList;
