@@ -1,10 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Airtable from 'airtable';
+import OrderList from './OrderList'
 import '../css/lookup.css'
+import { validateParams } from 'airtable/lib/query';
+
+
+
+const base = new Airtable({ apiKey: 'keykDvPHYyEvgsIQt'}).base("appPVeSMnCziamPTs");
 
 
 function Lookup() {
 
     const [userInput, setuserInput] = useState(""); // User input stored here
+    const [haveData, sethaveData] = useState(false);
+    const [item, setItem] = useState([])
+    const [Data, setData] = useState([]);
+
+    // filterByFormula: `AND(Lower("${data.fields.CustodianFirst}") = Lower({FirstName}), 
+    // Lower("${data.fields.CustodianLast}") = Lower({LastName}))` 
+
+    // Search first and last name of record data, corresponding to a given row, in the ID table to get a ID number record. Requires an exact match
+    useEffect(() => {
+      base("savdo")
+          .select({maxRecords: 100, view: "Grid view"}).eachPage((records, fetchNextPage) => {
+              setData(records)
+              fetchNextPage();
+          });
+  }, []);
+
+
+  function ValidateInput() {
+    Data.map(record => {
+      if(record.fields.SKU == userInput){
+        sethaveData(true);
+        setItem(record);
+      }
+    })
+  }
+
 
     // Capture user input
   function handleChange(event) {
@@ -12,10 +45,11 @@ function Lookup() {
   }
   return (
     <div>
-      <div className="SKUnumber">
-        <label style={{}}>Your shoe ID:</label>
-        <input placeholder={userInput} readOnly />
-      </div>
+      <div>
+        <div className="input">
+        <label>Your item ID: &nbsp; &nbsp;</label>
+        <input placeholder={userInput} readOnly/>
+        </div>
       <div className="buttons">
         <button>
           <i className="fas fa-print"></i>
@@ -41,11 +75,12 @@ function Lookup() {
           <i className="fas fa-sign-out-alt"></i>
               Exit
               </button>
-        <div></div>
+        <button onClick={ValidateInput}>Confirm</button>
         <button onClick={handleChange} value="0">0</button>
         <button onClick={handleChange} value=".00">.00</button>
       </div>
-    </div>
+      </div>
+      { haveData ? <OrderList data={item} /> : null }    </div>
     );
     
 }
