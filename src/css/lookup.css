@@ -1,6 +1,6 @@
 
   .SKUnumber {
-    transform: translate(100px, 350px);
+    transform: translate(1000px, 100px);
     background: lightblue;
     height: 10vh;
     width: 55vh;
@@ -12,7 +12,7 @@
   
   .buttons {
     display: grid;
-    transform: translate(100px, 380px);
+    transform: translate(1000px, 200px);
     height: 55vh;
     width: 55vh;
     grid-template-columns: 1fr 1fr 1fr 1fr;
