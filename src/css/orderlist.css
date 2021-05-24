@@ -1,0 +1,16 @@
+table{
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    color: black;
+    border-collapse: collapse;
+}
+
+table th{
+    border-bottom: 1px solid black;
+}
+
+table td{
+    border-right: 1px solid black;
+}

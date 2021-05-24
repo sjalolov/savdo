@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import Airtable from 'airtable';
 import OrderList from './OrderList'
 import '../css/lookup.css'
-import { validateParams } from 'airtable/lib/query';
 
 
 
@@ -35,6 +34,7 @@ function Lookup() {
         sethaveData(true);
         setItem(record);
       }
+      return 0;
     })
   }
 
