@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Airtable from 'airtable';
+import Navbar from './RightNav';
 import OrderList from './OrderList'
 import '../css/lookup.css'
 
@@ -45,6 +46,7 @@ function Lookup() {
   }
   return (
     <div>
+      <Navbar />
       <div>
         <div className="input">
         <label>Your item ID: &nbsp; &nbsp;</label>
